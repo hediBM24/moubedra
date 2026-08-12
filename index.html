@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قطرة أمل | مبادرة كشفية لحماية الماء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean-deep:#083345;
+    --ocean:#0d4d63;
+    --teal:#1c8ca8;
+    --aqua:#6fc3d4;
+    --aqua-pale:#d9f0f3;
+    --foam:#f6faf8;
+    --sand:#d9a441;
+    --leaf:#4a7c59;
+    --ink:#0b2530;
+    --paper:#fbfdfc;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Tajawal', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cairo', sans-serif;
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Cairo',sans-serif; font-weight:700; font-size:0.85rem;
+    letter-spacing:0.5px; color:var(--teal); margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:2px; background:var(--sand); display:inline-block;
+  }
+  section{position:relative; padding:100px 0;}
+  .section-title{
+    font-size:clamp(1.7rem,3.2vw,2.5rem);
+    font-weight:800; color:var(--ocean-deep); margin-bottom:18px;
+  }
+  .section-sub{
+    max-width:640px; color:#3d5a63; font-size:1.05rem;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    background:radial-gradient(ellipse at 30% 20%, #0f5871 0%, var(--ocean-deep) 55%, #051f2b 100%);
+    color:var(--foam);
+    position:relative;
+    overflow:hidden;
+    padding:140px 0 100px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(111,195,212,0.18), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(217,164,65,0.10), transparent 40%);
+    pointer-events:none;
+  }
+  .ripple-field{position:absolute; inset:0; pointer-events:none; opacity:0.5;}
+  .ripple{
+    position:absolute; border:1px solid rgba(111,195,212,0.35);
+    border-radius:50%;
+    animation:rippleOut 6s ease-out infinite;
+  }
+  @keyframes rippleOut{
+    0%{transform:scale(0.2); opacity:0.9;}
+    100%{transform:scale(1); opacity:0;}
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center;
+  }
+  .hero-tag{
+    font-family:'Cairo',sans-serif; font-weight:700; color:var(--aqua);
+    font-size:0.95rem; letter-spacing:1px; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-tag span.dot{width:8px; height:8px; border-radius:50%; background:var(--sand); display:inline-block; animation:pulse 2.2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(1.4);}}
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.2rem);
+    font-weight:900; line-height:1.25; margin-bottom:26px;
+  }
+  .hero h1 .accent{color:var(--aqua);}
+  .hero p.lead{
+    font-size:1.15rem; color:#cfe8ee; max-width:520px; margin-bottom:36px; font-weight:300;
+  }
+  .hero-slogan{
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:1.3rem;
+    color:var(--sand); border-right:3px solid var(--sand); padding-right:16px;
+  }
+  .hero-visual{position:relative; display:flex; justify-content:center; align-items:center; height:420px;}
+  .drop-svg{width:280px; filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));}
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:var(--aqua); font-size:0.75rem; font-family:'Cairo',sans-serif;
+    z-index:3;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--aqua), transparent); animation:scrollLine 2s ease-in-out infinite;}
+  @keyframes scrollLine{0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;}}
+
+  /* ---------- problem ---------- */
+  .problem{background:var(--foam);}
+  .problem-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-top:50px;}
+  .problem-figure{
+    background:var(--ocean-deep); border-radius:18px; padding:40px;
+    color:var(--foam); position:relative; overflow:hidden;
+  }
+  .problem-figure::after{
+    content:"💧"; position:absolute; font-size:12rem; opacity:0.06; left:-20px; bottom:-40px;
+  }
+  .problem-figure p{position:relative; z-index:1; font-size:1.08rem; font-weight:300; color:#dcecef;}
+  .problem-figure .big-line{
+    font-family:'Cairo',sans-serif; font-weight:800; font-size:1.4rem; color:var(--aqua); margin-bottom:18px;
+  }
+  .problem-text p{color:#33515a; font-size:1.02rem; margin-bottom:18px;}
+  .problem-text strong{color:var(--ocean); font-family:'Cairo',sans-serif;}
+
+  /* ---------- goals ---------- */
+  .goals{background:var(--paper);}
+  .goal-general{
+    background:linear-gradient(135deg, var(--teal), var(--ocean));
+    color:var(--foam); border-radius:20px; padding:34px 40px; margin:40px 0 46px;
+    font-family:'Cairo',sans-serif; font-weight:700; font-size:1.15rem;
+  }
+  .goal-general span{display:block; font-size:0.8rem; font-weight:400; opacity:0.8; margin-bottom:8px; font-family:'Tajawal',sans-serif;}
+  .goals-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  .goal-card{
+    background:var(--paper); border:1px solid #e3ecee; border-radius:16px; padding:26px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .goal-card:hover{transform:translateY(-6px); box-shadow:0 18px 34px rgba(11,61,69,0.10); border-color:var(--aqua);}
+  .goal-card .n{
+    font-family:'Cairo',sans-serif; font-weight:900; font-size:1.6rem; color:var(--aqua); margin-bottom:10px; display:block;
+  }
+  .goal-card p{font-size:0.96rem; color:#2c464e;}
+
+  /* ---------- audience ---------- */
+  .audience{background:var(--ocean-deep); color:var(--foam);}
+  .audience .section-title, .audience .eyebrow{color:var(--foam);}
+  .audience .eyebrow{color:var(--aqua);}
+  .audience .section-sub{color:#bcd8de;}
+  .aud-grid{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:16px; margin-top:50px;
+  }
+  .aud-card{
+    background:rgba(255,255,255,0.05); border:1px solid rgba(111,195,212,0.25);
+    border-radius:16px; padding:26px 16px; text-align:center;
+    transition:background 0.25s ease;
+  }
+  .aud-card:hover{background:rgba(111,195,212,0.14);}
+  .aud-card .ic{font-size:2.1rem; margin-bottom:14px;}
+  .aud-card p{font-size:0.88rem; color:#d9edf0; font-weight:500;}
+
+  /* ---------- journey / phases (signature element) ---------- */
+  .journey{background:var(--foam); overflow:hidden;}
+  .journey-path{
+    position:relative; margin-top:70px;
+  }
+  .river-svg{width:100%; height:auto; display:block;}
+  .phase-list{
+    display:grid; grid-template-columns:1fr; gap:0; margin-top:20px;
+  }
+  .phase{
+    display:grid; grid-template-columns:70px 1fr; gap:24px; padding:34px 0; position:relative;
+    border-bottom:1px dashed #cfe2e6;
+  }
+  .phase:last-child{border-bottom:none;}
+  .phase-node{
+    width:70px; height:70px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--aqua);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cairo',sans-serif; font-weight:900; font-size:1.3rem; color:var(--ocean);
+    position:relative; z-index:2;
+  }
+  .phase:nth-child(even) .phase-node{background:var(--ocean); color:var(--aqua); border-color:var(--ocean);}
+  .phase-body h3{
+    font-size:1.25rem; color:var(--ocean-deep); margin-bottom:6px; display:flex; align-items:center; gap:10px;
+  }
+  .phase-body .tag{
+    display:inline-block; font-family:'Cairo',sans-serif; font-size:0.7rem; font-weight:700;
+    background:var(--aqua-pale); color:var(--ocean); padding:3px 10px; border-radius:20px; margin-bottom:10px;
+  }
+  .phase-body p{color:#3d5a63; font-size:0.98rem; margin-bottom:10px;}
+  .phase-body ul{
+    list-style:none; display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
+  }
+  .phase-body ul li{
+    font-size:0.85rem; background:var(--foam); border:1px solid #dcebee; color:var(--ocean);
+    padding:6px 12px; border-radius:10px;
+  }
+
+  /* ---------- partners ---------- */
+  .partners{background:var(--paper);}
+  .partner-chips{
+    display:flex; flex-wrap:wrap; gap:14px; margin-top:40px;
+  }
+  .chip{
+    font-family:'Cairo',sans-serif; font-weight:600; font-size:0.92rem;
+    background:var(--foam); border:1px solid #dcebee; color:var(--ocean);
+    padding:12px 20px; border-radius:14px;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  /* ---------- play & learn ---------- */
+  .play{background:linear-gradient(180deg, var(--foam) 0%, #eef7f6 100%);}
+  .play-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:46px;
+    align-items:stretch;
+  }
+  .play-card{
+    background:var(--paper); border:1px solid #dcebee; border-radius:20px; padding:30px;
+    display:flex; flex-direction:column;
+    box-shadow:0 20px 40px rgba(8,51,69,0.06);
+  }
+  .play-head{display:flex; gap:16px; align-items:flex-start; margin-bottom:22px;}
+  .play-ic{
+    font-size:1.7rem; background:var(--aqua-pale); width:54px; height:54px; min-width:54px;
+    border-radius:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .play-head h3{font-size:1.15rem; color:var(--ocean-deep); margin-bottom:4px;}
+  .play-desc{font-size:0.88rem; color:#5c7c84;}
+
+  /* quiz */
+  .quiz-progress{height:6px; background:#e3eef0; border-radius:6px; overflow:hidden; margin-bottom:10px;}
+  .quiz-progress-bar{height:100%; width:20%; background:linear-gradient(90deg, var(--teal), var(--aqua)); transition:width 0.4s ease;}
+  .quiz-meta{display:flex; justify-content:space-between; font-size:0.8rem; color:#5c7c84; font-family:'Cairo',sans-serif; font-weight:700; margin-bottom:18px;}
+  .quiz-q{font-size:1.02rem; font-weight:700; color:var(--ocean-deep); margin-bottom:16px; font-family:'Cairo',sans-serif;}
+  .quiz-options{display:flex; flex-direction:column; gap:10px;}
+  .quiz-opt{
+    text-align:right; cursor:pointer; border:1.5px solid #dcebee; background:var(--foam);
+    border-radius:12px; padding:13px 16px; font-family:'Tajawal',sans-serif; font-size:0.95rem;
+    color:var(--ink); transition:all 0.2s ease;
+  }
+  .quiz-opt:hover{border-color:var(--aqua); background:var(--aqua-pale);}
+  .quiz-opt.correct{background:#e2f5e6; border-color:var(--leaf); color:#245a34; font-weight:700;}
+  .quiz-opt.wrong{background:#fbe6e6; border-color:#c85a5a; color:#8a3030; font-weight:700;}
+  .quiz-opt[disabled]{cursor:default; pointer-events:none;}
+  .quiz-result{text-align:center; padding:14px 0; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .quiz-result.hidden{display:none;}
+  #quizBody.hidden{display:none;}
+  .quiz-badge{font-size:3rem; margin-bottom:10px;}
+  .quiz-result h3{color:var(--ocean-deep); margin-bottom:10px;}
+  .quiz-result p{color:#3d5a63; font-size:0.95rem; max-width:340px; margin-bottom:20px;}
+  .play-btn{
+    font-family:'Cairo',sans-serif; font-weight:700; border:none; cursor:pointer;
+    background:var(--ocean); color:var(--foam); padding:12px 28px; border-radius:30px; font-size:0.92rem;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .play-btn:hover{background:var(--teal); transform:translateY(-2px);}
+
+  /* calculator */
+  .calc-list{list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:22px;}
+  .calc-list label{
+    display:flex; align-items:center; gap:12px; font-size:0.92rem; color:var(--ink);
+    background:var(--foam); border:1px solid #e3ecee; border-radius:12px; padding:12px 14px; cursor:pointer;
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .calc-list label:has(input:checked){border-color:var(--leaf); background:#eaf6ec;}
+  .calc-list input{width:18px; height:18px; accent-color:var(--leaf); cursor:pointer;}
+  .calc-liters{
+    margin-right:auto; font-family:'Cairo',sans-serif; font-weight:700; font-size:0.78rem;
+    color:var(--teal); background:var(--aqua-pale); padding:3px 10px; border-radius:20px;
+  }
+  .calc-result{
+    margin-top:auto; background:var(--ocean-deep); color:var(--foam); border-radius:16px; padding:24px;
+    text-align:center;
+  }
+  .calc-total{font-family:'Cairo',sans-serif; font-weight:900; font-size:2.4rem; color:var(--aqua);}
+  .calc-unit{font-size:0.9rem; font-weight:400; color:#bcd8de; margin-right:8px;}
+  .calc-equiv{font-size:0.85rem; color:#cfe8ee; margin-top:10px;}
+
+  /* ---------- indicators ---------- */
+  .indicators{background:var(--ocean); color:var(--foam);}
+  .indicators .section-title{color:var(--foam);}
+  .indicators .eyebrow{color:var(--sand);}
+  .indicators .section-sub{color:#cfe8ee;}
+  .ind-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-top:50px;
+  }
+  .ind-card{
+    background:rgba(0,0,0,0.15); border-radius:14px; padding:22px; border-top:3px solid var(--sand);
+  }
+  .ind-card p{font-size:0.92rem; color:#e2f2f4;}
+
+  /* ---------- results ---------- */
+  .results{background:var(--leaf); color:var(--foam); position:relative; overflow:hidden;}
+  .results::before{
+    content:"🌱"; position:absolute; font-size:16rem; opacity:0.08; left:-40px; top:-40px;
+  }
+  .results .section-title{color:var(--foam);}
+  .results .eyebrow{color:#d9f0d1;}
+  .results-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-top:44px; position:relative; z-index:1;
+  }
+  .results-grid p{
+    background:rgba(255,255,255,0.1); padding:18px 22px; border-radius:12px; font-size:0.98rem;
+  }
+
+  /* ---------- resources ---------- */
+  .resources{background:var(--foam);}
+  .res-list{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:40px;
+  }
+  .res-list div{
+    display:flex; align-items:center; gap:12px;
+    background:var(--paper); border:1px solid #e3ecee; border-radius:12px; padding:16px 18px;
+    font-size:0.95rem; color:var(--ocean-deep); font-weight:500;
+  }
+  .res-list div::before{content:"◆"; color:var(--sand); font-size:0.8rem;}
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:radial-gradient(ellipse at 50% 0%, #0f5871 0%, var(--ocean-deep) 60%, #051f2b 100%);
+    color:var(--foam); text-align:center; padding:130px 0;
+  }
+  .closing .msg{
+    font-family:'Cairo',sans-serif; font-weight:900; font-size:clamp(1.6rem,4vw,2.6rem);
+    max-width:720px; margin:0 auto 30px; line-height:1.5;
+  }
+  .closing .msg .accent{color:var(--aqua);}
+  .closing .main-slogan{
+    font-size:1.1rem; color:var(--sand); font-weight:700; font-family:'Cairo',sans-serif; margin-bottom:50px;
+  }
+  .slogan-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+  }
+  .slogan-row span{
+    border:1px solid rgba(111,195,212,0.4); color:var(--aqua);
+    padding:10px 22px; border-radius:30px; font-size:0.9rem; font-family:'Cairo',sans-serif; font-weight:600;
+  }
+
+  footer{
+    background:#051f2b; color:#7fa5ad; text-align:center; padding:30px 0; font-size:0.85rem;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    .hero-inner{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-slogan{margin:0 auto; border-right:none; border-top:3px solid var(--sand); padding-right:0; padding-top:12px;}
+    .hero-visual{height:260px;}
+    .drop-svg{width:190px;}
+    .problem-grid{grid-template-columns:1fr;}
+    .play-grid{grid-template-columns:1fr;}
+    .goals-grid{grid-template-columns:1fr 1fr;}
+    .aud-grid{grid-template-columns:repeat(2,1fr);}
+    .ind-grid{grid-template-columns:1fr 1fr;}
+    .results-grid{grid-template-columns:1fr;}
+    .res-list{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+  @media (max-width: 560px){
+    .goals-grid{grid-template-columns:1fr;}
+    .aud-grid{grid-template-columns:1fr 1fr;}
+    .phase{grid-template-columns:54px 1fr; gap:16px;}
+    .phase-node{width:54px; height:54px; font-size:1rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="ripple-field">
+    <div class="ripple" style="width:200px;height:200px; top:20%; right:15%; animation-delay:0s;"></div>
+    <div class="ripple" style="width:320px;height:320px; top:55%; right:10%; animation-delay:1.5s;"></div>
+    <div class="ripple" style="width:150px;height:150px; top:70%; right:30%; animation-delay:3s;"></div>
+  </div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-tag"><span class="dot"></span> مبادرة كشفية · مجتمعية · بيئية</div>
+      <h1>قَطْرَة <span class="accent">أَمَل</span></h1>
+      <p class="lead">الماء أمانة، وحمايته مسؤولية الجميع. مبادرة يقودها الكشافة بمشاركة الأطفال والشباب والعائلات، لتحويل الوعي بأهمية الماء إلى سلوك يومي حقيقي.</p>
+      <div class="hero-slogan">«كل قطرة تصنع الفرق... فلنحافظ على الماء اليوم من أجل غدٍ أفضل»</div>
+    </div>
+    <div class="hero-visual">
+      <svg class="drop-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dropGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8fd6e6"/>
+            <stop offset="100%" stop-color="#1c8ca8"/>
+          </linearGradient>
+        </defs>
+        <path d="M100 10 C100 10 190 130 190 180 C190 226 150 255 100 255 C50 255 10 226 10 180 C10 130 100 10 100 10 Z" fill="url(#dropGrad)"/>
+        <ellipse cx="70" cy="150" rx="14" ry="22" fill="#ffffff" opacity="0.35"/>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-cue">مرر للأسفل<div class="line"></div></div>
+</header>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">المشكلة</div>
+    <h2 class="section-title">لماذا نتحرك الآن؟</h2>
+    <div class="problem-grid">
+      <div class="problem-figure">
+        <div class="big-line">الماء ليس موردًا بلا نهاية</div>
+        <p>الإسراف في الاستهلاك، وتسربات المياه غير المكتشفة، وضعف الوعي بطرق الاقتصاد في الاستعمال، كلها تحديات يمكن للمجتمع أن يساهم في الحدّ منها بخطوات بسيطة.</p>
+      </div>
+      <div class="problem-text">
+        <p>يُعدّ الماء من أهم الموارد الطبيعية التي يعتمد عليها الإنسان في حياته اليومية، إلا أنّ التعامل معه ما زال يفتقر في كثير من الأحيان إلى الترشيد والوعي الكافي.</p>
+        <p>من هنا تأتي مبادرة <strong>«قطرة أمل»</strong> لتشجّع الأطفال والشباب على أن يكونوا <strong>سفراء للماء</strong> داخل أسرهم ومدارسهم ومجتمعهم، ولتحويل كل بيت وكل حيّ إلى مساحة تحافظ على قطرة الماء.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section class="goals">
+  <div class="wrap">
+    <div class="eyebrow">الأهداف</div>
+    <h2 class="section-title">من الوعي إلى السلوك</h2>
+    <p class="section-sub">هدف عام يوجّه المبادرة، وأهداف خاصة تترجمه إلى ممارسات ملموسة على أرض الواقع.</p>
+
+    <div class="goal-general">
+      <span>الهدف العام</span>
+      المساهمة في نشر ثقافة المحافظة على المياه وترشيد استهلاكها داخل المجتمع.
+    </div>
+
+    <div class="goals-grid">
+      <div class="goal-card"><span class="n">01</span><p>نشر الوعي بأهمية الماء باعتباره موردًا أساسيًا للحياة.</p></div>
+      <div class="goal-card"><span class="n">02</span><p>تشجيع الأطفال والشباب على تبني سلوكيات مسؤولة في استهلاك المياه.</p></div>
+      <div class="goal-card"><span class="n">03</span><p>الحدّ من مظاهر الإسراف والتبذير.</p></div>
+      <div class="goal-card"><span class="n">04</span><p>التعريف بالطرق البسيطة لتقليل استهلاك المياه في المنزل والمدرسة.</p></div>
+      <div class="goal-card"><span class="n">05</span><p>تشجيع المواطنين على اكتشاف تسربات المياه والإبلاغ عنها أو إصلاحها.</p></div>
+      <div class="goal-card"><span class="n">06</span><p>غرس قيم المواطنة والمسؤولية البيئية لدى الأطفال.</p></div>
+      <div class="goal-card"><span class="n">07</span><p>تعزيز دور الحركة الكشفية في خدمة المجتمع وحماية البيئة.</p></div>
+      <div class="goal-card"><span class="n">08</span><p>تشجيع المبادرات الشبابية والابتكار في مجال المحافظة على المياه.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience">
+  <div class="wrap">
+    <div class="eyebrow">الفئة المستهدفة</div>
+    <h2 class="section-title">من يصنع الفرق معنا</h2>
+    <p class="section-sub">مبادرة تمتد من الفرد إلى المجتمع بأكمله.</p>
+    <div class="aud-grid">
+      <div class="aud-card"><div class="ic">👦</div><p>الأطفال والأشبال</p></div>
+      <div class="aud-card"><div class="ic">🧑‍🤝‍🧑</div><p>الشباب والكشافون</p></div>
+      <div class="aud-card"><div class="ic">👨‍👩‍👧</div><p>العائلات</p></div>
+      <div class="aud-card"><div class="ic">🏫</div><p>المدارس والمؤسسات التربوية</p></div>
+      <div class="aud-card"><div class="ic">🏘️</div><p>سكان الحي والمجتمع المحلي</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY / PHASES -->
+<section class="journey">
+  <div class="wrap">
+    <div class="eyebrow">برنامج المبادرة</div>
+    <h2 class="section-title">رحلة القطرة عبر ست مراحل</h2>
+    <p class="section-sub">من المعرفة إلى الفعل، ثم إلى القيادة والتأثير في المحيط — كل مرحلة تبني على سابقتها.</p>
+
+    <div class="journey-path">
+      <div class="phase-list">
+        <div class="phase">
+          <div class="phase-node">01</div>
+          <div class="phase-body">
+            <span class="tag">توعية</span>
+            <h3>💧 اعرف قيمة قطرتك</h3>
+            <p>لقاءات وورشات توعوية للأطفال حول أهمية الماء، مصادره، مخاطر الإسراف فيه، وطرق المحافظة عليه.</p>
+            <ul><li>ألعاب كشفية</li><li>مسابقات</li><li>رسومات</li><li>تجارب بسيطة</li></ul>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-node">02</div>
+          <div class="phase-body">
+            <span class="tag">حملة ميدانية</span>
+            <h3>🚰 لا تهدر قطرة</h3>
+            <p>حملة توعوية داخل الحي والمدارس لإيصال الرسالة إلى أكبر عدد من العائلات.</p>
+            <ul><li>منشورات توعوية</li><li>ملصقات</li><li>تواصل اجتماعي</li><li>نصائح عملية</li></ul>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-node">03</div>
+          <div class="phase-body">
+            <span class="tag">قيادة شبابية</span>
+            <h3>🧑‍🚀 سفير الماء</h3>
+            <p>اختيار مجموعة من الأطفال والشباب ليكونوا «سفراء الماء» وينشروا الرسالة داخل أسرهم ومدارسهم.</p>
+            <ul><li>غلق الصنبور أثناء التنظيف</li><li>عدم ترك المياه جارية</li><li>الإبلاغ عن التسربات</li><li>استهلاك اقتصادي</li></ul>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-node">04</div>
+          <div class="phase-body">
+            <span class="tag">مدرسي</span>
+            <h3>🏫 الماء في مدرستنا</h3>
+            <p>زيارات للمؤسسات التربوية تحوّل الفكرة إلى نشاط جماعي وتنافسي داخل الفصول.</p>
+            <ul><li>مسابقات ثقافية</li><li>رسم لوحات</li><li>ألعاب تربوية</li><li>ركن توعوي</li></ul>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-node">05</div>
+          <div class="phase-body">
+            <span class="tag">بيئي</span>
+            <h3>🌱 قطرة خضراء</h3>
+            <p>ربط المحافظة على الماء بالبيئة عبر الغراسة والري الاقتصادي.</p>
+            <ul><li>غراسة نباتات محلية</li><li>نباتات قليلة الاستهلاك</li><li>ورشة الري الاقتصادي</li></ul>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-node">06</div>
+          <div class="phase-body">
+            <span class="tag">يوم مجتمعي</span>
+            <h3>🌊 يوم الماء</h3>
+            <p>يوم مفتوح يجمع الكشافة والأطفال والعائلات في احتفالية ختامية للمبادرة.</p>
+            <ul><li>ألعاب ومسابقات</li><li>معرض رسومات</li><li>حملة تنظيف</li><li>شهادات تقدير</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners">
+  <div class="wrap">
+    <div class="eyebrow">الشركاء المحتملون</div>
+    <h2 class="section-title">سويًّا نصل أبعد</h2>
+    <div class="partner-chips">
+      <span class="chip">الحركة الكشفية</span>
+      <span class="chip">البلدية</span>
+      <span class="chip">المؤسسات التربوية</span>
+      <span class="chip">الجمعيات البيئية</span>
+      <span class="chip">دور الشباب والثقافة</span>
+      <span class="chip">المؤسسات المحلية</span>
+      <span class="chip">الأولياء والعائلات</span>
+      <span class="chip">المتطوعون والشباب</span>
+    </div>
+  </div>
+</section>
+
+<!-- PLAY & LEARN -->
+<section class="play">
+  <div class="wrap">
+    <div class="eyebrow">شارك بنفسك الآن</div>
+    <h2 class="section-title">العب... واكتشف... ووفّر</h2>
+    <p class="section-sub">قبل أن تكمل القراءة، جرّب هاتين الأداتين التفاعليتين — اختبر معلوماتك عن الماء، ثم احسب كم لترًا يمكن لعائلتك توفيره كل يوم.</p>
+
+    <div class="play-grid">
+
+      <!-- QUIZ GAME -->
+      <div class="play-card quiz-card">
+        <div class="play-head">
+          <span class="play-ic">🎮</span>
+          <div>
+            <h3>اختبر معلوماتك عن الماء</h3>
+            <p class="play-desc">٥ أسئلة سريعة — هل أنت جاهز لتصبح سفير الماء؟</p>
+          </div>
+        </div>
+
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizBar"></div></div>
+        <div class="quiz-meta"><span id="quizStep">السؤال 1 من 5</span><span id="quizScoreLive">النقاط: 0</span></div>
+
+        <div id="quizBody"></div>
+
+        <div id="quizResult" class="quiz-result hidden">
+          <div class="quiz-badge" id="quizBadgeIcon">🏅</div>
+          <h3 id="quizResultTitle">نتيجتك</h3>
+          <p id="quizResultText"></p>
+          <button class="play-btn" id="quizRestart">أعد المحاولة</button>
+        </div>
+      </div>
+
+      <!-- CALCULATOR -->
+      <div class="play-card calc-card">
+        <div class="play-head">
+          <span class="play-ic">💧</span>
+          <div>
+            <h3>احسب توفير عائلتك</h3>
+            <p class="play-desc">اختر العادات التي تطبّقها بيتك، وشاهد كمية الماء التي توفّرها يوميًا.</p>
+          </div>
+        </div>
+
+        <ul class="calc-list" id="calcList">
+          <li><label><input type="checkbox" data-liters="6"> إغلاق الصنبور أثناء تنظيف الأسنان <span class="calc-liters">6 لتر</span></label></li>
+          <li><label><input type="checkbox" data-liters="30"> الاستحمام السريع بدل الحمّام الطويل <span class="calc-liters">30 لتر</span></label></li>
+          <li><label><input type="checkbox" data-liters="15"> إصلاح الصنبور المتسرب فورًا <span class="calc-liters">15 لتر</span></label></li>
+          <li><label><input type="checkbox" data-liters="10"> استعمال ماء غسل الخضار لسقي النباتات <span class="calc-liters">10 لتر</span></label></li>
+          <li><label><input type="checkbox" data-liters="8"> غسل الخضار في وعاء لا تحت الصنبور <span class="calc-liters">8 لتر</span></label></li>
+          <li><label><input type="checkbox" data-liters="20"> تشغيل الغسالة بحمولة كاملة فقط <span class="calc-liters">20 لتر</span></label></li>
+        </ul>
+
+        <div class="calc-result">
+          <div class="calc-total">
+            <span id="calcNumber">0</span>
+            <span class="calc-unit">لتر / يوم</span>
+          </div>
+          <p class="calc-equiv" id="calcEquiv">اختر عادة واحدة على الأقل لترى الأثر</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INDICATORS -->
+<section class="indicators">
+  <div class="wrap">
+    <div class="eyebrow">مؤشرات النجاح</div>
+    <h2 class="section-title">كيف نقيس الأثر</h2>
+    <div class="ind-grid">
+      <div class="ind-card"><p>عدد المشاركين والمتطوعين</p></div>
+      <div class="ind-card"><p>عدد الأطفال والشباب المستفيدين</p></div>
+      <div class="ind-card"><p>عدد المدارس والمؤسسات المشاركة</p></div>
+      <div class="ind-card"><p>عدد الورشات والأنشطة المنجزة</p></div>
+      <div class="ind-card"><p>عدد المنشورات والملصقات الموزعة</p></div>
+      <div class="ind-card"><p>عدد «سفراء الماء» الذين تم تكوينهم</p></div>
+      <div class="ind-card"><p>عدد الحملات الميدانية المنجزة</p></div>
+      <div class="ind-card"><p>عدد الأشجار والنباتات المغروسة</p></div>
+      <div class="ind-card"><p>نسبة التفاعل على وسائل التواصل الاجتماعي</p></div>
+      <div class="ind-card"><p>مدى تغيّر سلوك المشاركين تجاه استهلاك المياه</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="wrap">
+    <div class="eyebrow">النتائج المنتظرة</div>
+    <h2 class="section-title">أثر يبقى بعد المبادرة</h2>
+    <div class="results-grid">
+      <p>رفع مستوى الوعي بأهمية الماء</p>
+      <p>نشر عادات وسلوكيات إيجابية في استهلاك المياه</p>
+      <p>تعزيز مشاركة الأطفال والشباب في حماية البيئة</p>
+      <p>تقوية الشراكة بين الكشافة والمجتمع المحلي</p>
+      <p>تحويل الأطفال إلى سفراء للتوعية بالمحافظة على الماء</p>
+      <p>خلق نموذج مبادرة يمكن تكراره في أحياء ومدارس أخرى</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources">
+  <div class="wrap">
+    <div class="eyebrow">الموارد المطلوبة</div>
+    <h2 class="section-title">ماذا نحتاج لتنفيذها</h2>
+    <div class="res-list">
+      <div>ملصقات ومنشورات توعوية</div>
+      <div>أدوات للرسم والورشات</div>
+      <div>معدات تنظيف</div>
+      <div>شتلات ونباتات</div>
+      <div>أدوات للأنشطة الكشفية</div>
+      <div>مكبر صوت عند الحاجة</div>
+      <div>شهادات تقدير للمشاركين</div>
+      <div>دعم لوجستي من الشركاء</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <div class="msg">«الماء ليس مجرد <span class="accent">قطرة</span>... إنه حياة ومستقبل»</div>
+    <div class="main-slogan">كل قطرة تصنع الفرق... فلنحافظ على الماء اليوم من أجل غدٍ أفضل</div>
+    <div class="slogan-row">
+      <span>لا تهدر قطرة</span>
+      <span>الماء أمانة</span>
+      <span>احفظ الماء... تحمي الحياة</span>
+      <span>قطرتك اليوم... حياة الغد</span>
+    </div>
+  </div>
+</section>
+
+<footer>مبادرة «قطرة أمل» — مبادرة كشفية مجتمعية بيئية</footer>
+
+<script>
+/* ---------------- scroll reveal ---------------- */
+(function(){
+  const selectors = ['.goal-card', '.aud-card', '.phase', '.ind-card', '.results-grid p', '.res-list div', '.chip', '.play-card', '.problem-figure', '.problem-text', '.goal-general'];
+  const els = document.querySelectorAll(selectors.join(','));
+  els.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if(entry.isIntersecting){
+        setTimeout(() => entry.target.classList.add('in-view'), (i % 6) * 70);
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  els.forEach(el => io.observe(el));
+})();
+
+/* ---------------- quiz game ---------------- */
+(function(){
+  const questions = [
+    {
+      q:"كم لترًا من الماء يمكن أن يهدره صنبور متسرب في اليوم الواحد؟",
+      options:["حوالي لتر واحد", "حوالي 15 لترًا", "لا يهدر شيئًا يُذكر", "حوالي 200 لتر"],
+      correct:1
+    },
+    {
+      q:"ما أفضل وقت لسقي النباتات لتقليل تبخّر الماء؟",
+      options:["منتصف النهار", "الصباح الباكر أو المساء", "لا فرق في التوقيت", "أثناء هطول المطر فقط"],
+      correct:1
+    },
+    {
+      q:"ماذا يعني أن تكون «سفير ماء»؟",
+      options:["أن تعمل في شركة مياه", "أن تنشر سلوكيات ترشيد الاستهلاك حولك", "أن تشرب ماءً أكثر من غيرك", "لقب فخري بلا مهام"],
+      correct:1
+    },
+    {
+      q:"أي عادة توفّر أكبر قدر من الماء يوميًا؟",
+      options:["إغلاق الصنبور أثناء تنظيف الأسنان", "تقصير مدة الاستحمام", "غسل السيارة بالخرطوم", "ترك الصنبور مفتوحًا قليلًا"],
+      correct:1
+    },
+    {
+      q:"ماذا يجب أن تفعل عند اكتشاف تسرب مياه في الحي؟",
+      options:["تجاهله لأنه ليس مسؤوليتك", "الإبلاغ عنه أو محاولة إصلاحه", "تصويره فقط دون إبلاغ", "الانتظار حتى يتوقف من تلقاء نفسه"],
+      correct:1
+    }
+  ];
+
+  let current = 0, score = 0;
+  const body = document.getElementById('quizBody');
+  const bar = document.getElementById('quizBar');
+  const step = document.getElementById('quizStep');
+  const scoreLive = document.getElementById('quizScoreLive');
+  const resultBox = document.getElementById('quizResult');
+  const resultTitle = document.getElementById('quizResultTitle');
+  const resultText = document.getElementById('quizResultText');
+  const badgeIcon = document.getElementById('quizBadgeIcon');
+  const restartBtn = document.getElementById('quizRestart');
+
+  function renderQuestion(){
+    const item = questions[current];
+    step.textContent = `السؤال ${current + 1} من ${questions.length}`;
+    scoreLive.textContent = `النقاط: ${score}`;
+    bar.style.width = `${(current / questions.length) * 100}%`;
+
+    const optsHtml = item.options.map((opt, i) =>
+      `<button class="quiz-opt" data-i="${i}">${opt}</button>`
+    ).join('');
+    body.innerHTML = `<div class="quiz-q">${item.q}</div><div class="quiz-options">${optsHtml}</div>`;
+
+    body.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => onAnswer(btn, item));
+    });
+  }
+
+  function onAnswer(btn, item){
+    const chosen = parseInt(btn.dataset.i, 10);
+    const allBtns = body.querySelectorAll('.quiz-opt');
+    allBtns.forEach(b => b.setAttribute('disabled', 'true'));
+    allBtns[item.correct].classList.add('correct');
+    if(chosen === item.correct){
+      score++;
+    } else {
+      btn.classList.add('wrong');
+    }
+    scoreLive.textContent = `النقاط: ${score}`;
+    setTimeout(() => {
+      current++;
+      if(current < questions.length){
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }, 850);
+  }
+
+  function showResult(){
+    bar.style.width = '100%';
+    step.textContent = `اكتملت الأسئلة`;
+    body.classList.add('hidden');
+    resultBox.classList.remove('hidden');
+    resultText_and_badge();
+  }
+
+  function resultText_and_badge(){
+    const ratio = score / questions.length;
+    let badge, title, text;
+    if(ratio === 1){
+      badge = '🏆'; title = 'سفير الماء الذهبي';
+      text = `إجابات صحيحة كاملة (${score}/${questions.length})! أنت جاهز فعلًا لقيادة حملة التوعية في حيّك.`;
+    } else if(ratio >= 0.6){
+      badge = '🥈'; title = 'سفير ماء واعد';
+      text = `نتيجة جيدة (${score}/${questions.length}). معلوماتك قوية، وبقليل من المراجعة تصبح سفيرًا ذهبيًا.`;
+    } else {
+      badge = '🌱'; title = 'بداية الرحلة';
+      text = `حصلت على (${score}/${questions.length}). لا بأس، المبادرة نفسها صُممت لتعليمك — جرّب مرة أخرى الآن.`;
+    }
+    badgeIcon.textContent = badge;
+    resultTitle.textContent = title;
+    resultText.textContent = text;
+  }
+
+  restartBtn.addEventListener('click', () => {
+    current = 0; score = 0;
+    resultBox.classList.add('hidden');
+    body.classList.remove('hidden');
+    renderQuestion();
+  });
+
+  renderQuestion();
+})();
+
+/* ---------------- water savings calculator ---------------- */
+(function(){
+  const checkboxes = document.querySelectorAll('#calcList input[type="checkbox"]');
+  const numberEl = document.getElementById('calcNumber');
+  const equivEl = document.getElementById('calcEquiv');
+  let shown = 0;
+
+  function animateTo(target){
+    const start = shown;
+    const duration = 500;
+    const startTime = performance.now();
+    function tick(now){
+      const p = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const value = Math.round(start + (target - start) * eased);
+      numberEl.textContent = value;
+      if(p < 1) requestAnimationFrame(tick);
+      else shown = target;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function update(){
+    let total = 0;
+    checkboxes.forEach(cb => { if(cb.checked) total += parseInt(cb.dataset.liters, 10); });
+    animateTo(total);
+    if(total === 0){
+      equivEl.textContent = 'اختر عادة واحدة على الأقل لترى الأثر';
+    } else {
+      const buckets = Math.round(total / 10);
+      const yearly = total * 365;
+      equivEl.textContent = `يعادل تقريبًا ${buckets} دلو ماء يوميًا — أي حوالي ${yearly.toLocaleString('en-US')} لترًا في السنة!`;
+    }
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', update));
+})();
+</script>
+
+</body>
+</html>
